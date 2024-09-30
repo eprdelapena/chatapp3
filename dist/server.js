@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const mongoURI = 'mongodb+srv://ceggeoconsultation:niceonetoyou23@cluster0.a1f7avf.mongodb.net/';
 mongoose.connect(mongoURI)
     .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
+    .catch((err) => console.error('MongoDB connection error:', err));
 // Define a schema and model for messages
 const messageSchema = new mongoose.Schema({
     content: String,
@@ -13,7 +13,8 @@ const messageSchema = new mongoose.Schema({
 });
 const Message = mongoose.model('Message', messageSchema);
 // Create Socket.IO server
-const io = new Server(3000, {
+const PORTS = process.env.PORT || 3000;
+const io = new Server(Number(PORTS), {
     cors: {
         origin: "*",
         methods: ["GET", "POST"]
