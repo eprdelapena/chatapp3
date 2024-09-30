@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
 
     socket.on("joinRoom", async() => {
         console.log("joinRoom triggereds");
-        const messages = await Message.find().sort({ createdAt: -1 }).limit(20);
+        const messages = await Message.find().sort({ createdAt: 1 }).limit(20);
         console.log("joinRoom triggered");
         console.log("current messages", messages);
         socket.emit("previousMessages", messages);
